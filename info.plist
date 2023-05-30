@@ -281,7 +281,7 @@
 	</array>
 	<key>readme</key>
 	<string>A workflow to integrate with Pass - the standard Unix password manager.
-See the README file at https://github.com/CGenie/alfred-pass for more info.</string>
+See the README file at https://github.com/elvisgastelum/alfred-x-pass for more info.</string>
 	<key>uidata</key>
 	<dict>
 		<key>06C9C4A9-38CE-441A-8D06-E2F2D8B39B60</key>
