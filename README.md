@@ -40,44 +40,6 @@ After 7200 seconds, GPG will forget your master password.
 ### Build for production
 - `make`
 
-[Pacmax Page](https://pacmax.org/pac/cgenie-alfred-pass/)
-
-[Alfred forum page](https://www.alfredforum.com/topic/8471-pass-the-standard-unix-password-manager/)
-
-This is an Alfred 2/3 workflow for [Pass - the standard Unix password manager](https://www.passwordstore.org/). It's based on [passmenu](http://git.zx2c4.com/password-store/tree/contrib/dmenu/passmenu), which is available for Linux.
-
-## Setup
-
-To make this work you need:
-* [Pass](https://www.passwordstore.org/) (obviously) -- needs to be set up with password store in
-  `~/.password-store/`.
-* `gpg-agent` -- install with `brew`
-* `pinentry-mac` -- also install with `brew` (this is GUI frontend for `gpg-agent`).
-* (optionally) the `fuzzywuzzy` and (also optionally) `python-Levenshtein`
-  Python modules (install with `pip install --user fuzzywuzzy python-Levenshtein`)
-
-Next configure `gpg-agent` to use `pinentry-mac` and not the bundled one, editing `~/.gnupg/gpg-agent.conf`:
-
-```
-pinentry-program /usr/local/bin/pinentry-mac
-```
-
-If you prefer to keep the terminal version of `pinentry` you can use the
-`pinentry.sh` wrapper from this repository as the `pinentry-program`. This will
-use the ncurses version when in console and the GUI version for Alfred etc.
-
-You can also take a look at [this blog post from @bshiller](https://brianschiller.com/blog/2016/08/31/gnu-pass-alfred).
-
-### GPG tweaking
-
-You can tweak some of the `gpg-agent` settings in `~/.gnupg/gpg-agent.conf`:
-
-```
-max-cache-ttl 7200
-```
-
-After 7200 seconds, GPG will forget your master password.
-
 ## Usage
 
 Basic Alfred commands:
