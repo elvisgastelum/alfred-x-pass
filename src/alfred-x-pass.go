@@ -46,25 +46,6 @@ func walkDir(dir string) (files []file) {
 		relativePath := fileNameWithoutExtTrimSuffix(removePrefix(path, passwordStorePath+"/"))
 		title := fileNameWithoutExtTrimSuffix(entry.Name())
 
-		if strings.HasSuffix(relativePath, "/") || title == "" {
-			return nil
-		}
-
-		// ignore files that start with "."
-		if strings.HasPrefix(relativePath, ".") {
-			return nil
-		}
-
-		// ignore files that start with "__" in some parent directory
-		if strings.Contains(relativePath, "/__") {
-			return nil
-		}
-
-		// ignore .git directories
-		if strings.HasPrefix(relativePath, ".git") {
-			return nil
-		}
-
 		files = append(files, file{
 			Title:    title,
 			Value:    relativePath,
@@ -82,6 +63,26 @@ func run() {
 	query = flag.Arg(0)
 
 	for _, file := range walkDir(passwordStorePath) {
+
+		if strings.HasSuffix(file.Value, "/") || file.Title == "" {
+			continue
+		}
+
+		// ignore files that start with "."
+		if strings.HasPrefix(file.Value, ".") {
+			continue
+		}
+
+		// ignore files that start with "__" in some parent directory
+		if strings.Contains(file.Value, "/__") {
+			continue
+		}
+
+		// ignore .git directories
+		if strings.HasPrefix(file.Value, ".git") {
+			continue
+		}
+
 		it := wf.NewItem(file.Title)
 		it.Arg(file.Value)
 		it.Subtitle(file.Value)
