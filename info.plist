@@ -68,7 +68,7 @@
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>pass</string>
+	<string>Pass</string>
 	<key>objects</key>
 	<array>
 		<dict>

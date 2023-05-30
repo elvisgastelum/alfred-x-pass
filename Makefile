@@ -1,19 +1,28 @@
-build: dist dist/pass-x-alfred.alfredworkflow
+DIST_DIR = dist
+FILE_NAME = pass-x-alfred
+DIST_FILE = $(DIST_DIR)/$(FILE_NAME).alfredworkflow
+DIST_FILE_ZIP = $(DIST_DIR)/$(FILE_NAME).zip
+BUILD_FINISHED_MESSAGE = "Workflow built successfully at $(DIST_FILE)"
+GO_FILTER_BUILD_DIR = build
+GO_FILTER_OUTPUT_FILE = filter
+GO_FILTER_OUTPUT = $(GO_FILTER_BUILD_DIR)/$(GO_FILTER_OUTPUT_FILE)
+GO_FILTER_SRC=src/filter.go
 
-dist:
-	[ -d dist ] || mkdir -p dist
+build: $(DIST_FILE)
+	echo $(BUILD_FINISHED_MESSAGE)
 
-dist/pass-x-alfred.alfredworkflow: info.plist icon.png assets/key-icon.png assets/not-found-icon.png build/filter scripts/pass-show.sh scripts/pass-generate.sh scripts/pass-otp.sh
+$(DIST_FILE): info.plist icon.png assets/key-icon.png assets/not-found-icon.png $(GO_FILTER_OUTPUT) scripts/pass-show.sh scripts/pass-generate.sh scripts/pass-otp.sh
+	[ -d $(DIST_DIR) ] || mkdir -p $(DIST_DIR);
 	zip $@ $^
 
-build/filter: src/alfred-x-pass.go
+$(GO_FILTER_OUTPUT): $(GO_FILTER_SRC)
 	go build -o $@ $^
 
-zip: info.plist build/filter scripts/pass-show.sh scripts/pass-generate.sh scripts/pass-otp.sh
-	zip dist/pass-x-alfred.zip $^
+zip: info.plist $(GO_FILTER_OUTPUT) scripts/pass-show.sh scripts/pass-generate.sh scripts/pass-otp.sh
+	zip $(DIST_FILE_ZIP) $^
 
 dev: build
-	open dist/pass-x-alfred.alfredworkflow
+	open $(DIST_FILE)
 
 clean:
 	rm -rf dist build
