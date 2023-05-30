@@ -17,7 +17,6 @@ type file struct {
 }
 
 var (
-	query             string
 	wf                *aw.Workflow
 	passwordStorePath = os.ExpandEnv("${HOME}/.password-store")
 )
@@ -63,7 +62,7 @@ func walkDir(dir string) (files []file) {
 func run() {
 	wf.Args() // call to handle magic actions
 	flag.Parse()
-	query = flag.Arg(0)
+	query := flag.Arg(0)
 
 	for _, file := range walkDir(passwordStorePath) {
 
@@ -91,12 +90,14 @@ func run() {
 		it.Subtitle(file.Value)
 		it.Match(file.Match)
 		it.Valid(true)
+		it.Icon(&aw.Icon{Value: filepath.Join("assets", "key-icon.png")})
 	}
 
 	wf.Filter(query)
 
 	if wf.IsEmpty() {
-		wf.NewWarningItem("No matches found", "Try a different query?")
+		wi := wf.NewWarningItem("No matches found", "Try a different query?")
+		wi.Icon(&aw.Icon{Value: filepath.Join("assets", "not-found-icon.png")})
 	}
 
 	// Send results to Alfred
