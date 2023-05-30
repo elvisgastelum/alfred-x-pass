@@ -13,6 +13,7 @@ type file struct {
 	Title    string
 	Value    string
 	Subtitle string
+	Match    string
 }
 
 var (
@@ -45,11 +46,13 @@ func walkDir(dir string) (files []file) {
 
 		relativePath := fileNameWithoutExtTrimSuffix(removePrefix(path, passwordStorePath+"/"))
 		title := fileNameWithoutExtTrimSuffix(entry.Name())
+		match := strings.Join(strings.Split(relativePath, "/"), " ") + " " + title + " " + relativePath
 
 		files = append(files, file{
 			Title:    title,
 			Value:    relativePath,
 			Subtitle: relativePath,
+			Match:    match,
 		})
 		return nil
 	})
@@ -86,7 +89,7 @@ func run() {
 		it := wf.NewItem(file.Title)
 		it.Arg(file.Value)
 		it.Subtitle(file.Value)
-		it.Match(file.Value)
+		it.Match(file.Match)
 		it.Valid(true)
 	}
 
