@@ -1,4 +1,4 @@
-package main
+package pasawutil
 
 import (
 	"flag"
@@ -59,10 +59,10 @@ func walkDir(dir string) (files []file) {
 	return files
 }
 
-func run() {
+func RunFilter() {
 	wf.Args() // call to handle magic actions
 	flag.Parse()
-	query := flag.Arg(0)
+	query := flag.Arg(1)
 
 	for _, file := range walkDir(passwordStorePath) {
 
@@ -102,8 +102,4 @@ func run() {
 
 	// Send results to Alfred
 	wf.SendFeedback()
-}
-
-func main() {
-	wf.Run(run)
 }

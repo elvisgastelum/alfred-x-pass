@@ -21,6 +21,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>6C445058-D637-4FC4-8600-C5FC6F2086E3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F9183486-0543-4160-A5E1-1AEE01F3F3D2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</key>
 		<array>
 			<dict>
@@ -52,6 +65,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>0D9D4DE6-36FF-459E-9457-B3CAD298670C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F9183486-0543-4160-A5E1-1AEE01F3F3D2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C7B97C94-3D0B-471E-96EE-A441A1FAB184</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -99,7 +125,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>build/filter "$1"</string>
+				<string>build/pasawutil filter "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -234,7 +260,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>build/filter "$1"</string>
+				<string>build/pasawutil filter "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -278,6 +304,78 @@
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>pl</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>build/pasawutil filter "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Get login field for a password store entry</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>6C445058-D637-4FC4-8600-C5FC6F2086E3</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>bash scripts/pass-get-login-field.sh "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F9183486-0543-4160-A5E1-1AEE01F3F3D2</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>A workflow to integrate with Pass - the standard Unix password manager.
@@ -304,6 +402,13 @@ See the README file at https://github.com/elvisgastelum/alfred-x-pass for more i
 			<real>500</real>
 			<key>ypos</key>
 			<real>300</real>
+		</dict>
+		<key>6C445058-D637-4FC4-8600-C5FC6F2086E3</key>
+		<dict>
+			<key>xpos</key>
+			<real>295</real>
+			<key>ypos</key>
+			<real>415</real>
 		</dict>
 		<key>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</key>
 		<dict>
@@ -332,6 +437,13 @@ See the README file at https://github.com/elvisgastelum/alfred-x-pass for more i
 			<real>680</real>
 			<key>ypos</key>
 			<real>60</real>
+		</dict>
+		<key>F9183486-0543-4160-A5E1-1AEE01F3F3D2</key>
+		<dict>
+			<key>xpos</key>
+			<real>500</real>
+			<key>ypos</key>
+			<real>415</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>

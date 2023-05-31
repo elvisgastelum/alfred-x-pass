@@ -1,18 +1,22 @@
 # An Alfred 5 Workflow for Pass
 
 ## Original Author and Repository
+
 - CGenie
 - [Original repository](https://github.com/CGenie/alfred-pass)
 
 ## Rewritten for Alfred 5
+
 The goal is to rewrite the original workflow to make it work with Alfred 5 and the minimun dependencies.
 
 ## Development
 
 ### Dependencies to build
+
 - Golang 1.20.4 `brew install go`
 
 ### Dependencies to run
+
 - pass 1.7.4 `brew install pass`
 - pass-otp 1.2.0 `brew install pass-otp`
 - alfred 5 `brew install alfred`
@@ -23,6 +27,7 @@ The goal is to rewrite the original workflow to make it work with Alfred 5 and t
     ```
     pinentry-program /path/to/pinentry-mac
     ```
+
 ### GPG tweaking
 
 You can tweak some of the `gpg-agent` settings in `~/.gnupg/gpg-agent.conf`:
@@ -33,11 +38,12 @@ max-cache-ttl 7200
 
 After 7200 seconds, GPG will forget your master password.
 
-
 ### Build for development
+
 - `make dev` basically it will run the build for production and then it will open the workflow in Alfred
 
 ### Build for production
+
 - `make`
 
 ## Usage
@@ -49,7 +55,7 @@ Basic Alfred commands:
 This will search through your passwords using the filter terms you provided.
 
 The password will be copied to clipboard and cleared after 45 seconds (this is the default
-`pass -c` behavior).  You can change that time by modifying the env variable
+`pass -c` behavior). You can change that time by modifying the env variable
 `PASSWORD_STORE_CLIP_TIME`. Or in the `pass-show.sh` file you can change this line
 
 ```
@@ -71,3 +77,16 @@ Calls `pass generate` to add a new password with default length of 20 chars.
 ## `po <filter terms>`
 
 This will search through your OTP passwords (requires `pass-otp`) using the filter terms you provided.
+
+## `pl <filter terms>`
+
+This will search through your login fields using the filter terms you provided.
+The order of the fields is: `login`, `email`, `username`, `user` until the first match.
+
+Example:
+
+```sh
+pl github.com
+```
+
+You will have on your clipboard the login field of the matched entry.
