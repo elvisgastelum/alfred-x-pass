@@ -72,7 +72,7 @@ to aviod auto-clearing of clipboard.
 
 ## `pg <id> <optional username/email>`
 
-Calls `pass generate` to add a new password with default length of 20 chars. If second argument is provided, it will be used as the username/email for the password. with the metadata `login`. The password generated will be copied to your clipboard.
+Generates add a new password with default length of 20 chars and save to pass store. If second argument is provided, it will be used as the username/email for the entry. with the metadata `login`. The password generated will be copied to your clipboard.
 
 ## `po <filter terms>`
 
