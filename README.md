@@ -70,9 +70,9 @@ pass show $QUERY | awk 'BEGIN{ORS=""} {print; exit}' | pbcopy
 
 to aviod auto-clearing of clipboard.
 
-## `pg <id>`
+## `pg <id> <optional username/email>`
 
-Calls `pass generate` to add a new password with default length of 20 chars.
+Calls `pass generate` to add a new password with default length of 20 chars. If second argument is provided, it will be used as the username/email for the password. with the metadata `login`. The password generated will be copied to your clipboard.
 
 ## `po <filter terms>`
 

@@ -1,7 +1,6 @@
 package pasawutil
 
 import (
-	"flag"
 	"os"
 	"path/filepath"
 	"strings"
@@ -17,8 +16,7 @@ type file struct {
 }
 
 var (
-	wf                *aw.Workflow
-	passwordStorePath = os.ExpandEnv("${HOME}/.password-store")
+	wf *aw.Workflow
 )
 
 func init() {
@@ -43,7 +41,7 @@ func walkDir(dir string) (files []file) {
 			return nil
 		}
 
-		relativePath := fileNameWithoutExtTrimSuffix(removePrefix(path, passwordStorePath+"/"))
+		relativePath := fileNameWithoutExtTrimSuffix(removePrefix(path, dir+"/"))
 		title := fileNameWithoutExtTrimSuffix(entry.Name())
 		match := strings.Join(strings.Split(relativePath, "/"), " ") + " " + title + " " + relativePath
 
@@ -59,10 +57,8 @@ func walkDir(dir string) (files []file) {
 	return files
 }
 
-func RunFilter() {
+func RunFilter(query string, passwordStorePath string) {
 	wf.Args() // call to handle magic actions
-	flag.Parse()
-	query := flag.Arg(1)
 
 	for _, file := range walkDir(passwordStorePath) {
 

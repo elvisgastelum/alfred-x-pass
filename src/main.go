@@ -5,6 +5,7 @@ import (
 	"time"
 
 	filter "github.com/elvisgastelum/pasawutil/src/filter"
+	generate "github.com/elvisgastelum/pasawutil/src/generate"
 	glf "github.com/elvisgastelum/pasawutil/src/get-login-field"
 	"github.com/urfave/cli/v2"
 )
@@ -29,7 +30,15 @@ func main() {
 				Usage:     "pasawutil [filter|f] [query]",
 				UsageText: "pass a query to filter the password store",
 				Action: func(cCtx *cli.Context) error {
-					filter.RunFilter()
+					defaultPasswordStorePath := os.ExpandEnv("${HOME}/.password-store")
+					envPasswordStorePath := os.Getenv("PASSWORD_STORE_DIR")
+
+					if envPasswordStorePath != "" {
+						filter.RunFilter(cCtx.Args().Get(0), envPasswordStorePath)
+						return nil
+					}
+
+					filter.RunFilter(cCtx.Args().Get(0), defaultPasswordStorePath)
 					return nil
 				},
 			},
@@ -42,6 +51,16 @@ func main() {
 					glf.GetLoginField(
 						cCtx.Args().Get(0),
 					)
+					return nil
+				},
+			},
+			{
+				Name:      "generate",
+				Aliases:   []string{"g"},
+				Usage:     "pasawutil [generate|g] [entry] [optional: user]",
+				UsageText: "pass an entry with possible user to generate a random password and insert it into the password store and returns the entry saved",
+				Action: func(cCtx *cli.Context) error {
+					generate.GeneratePassword(cCtx.Args())
 					return nil
 				},
 			},
