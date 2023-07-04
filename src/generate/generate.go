@@ -22,10 +22,6 @@ func GeneratePassword(args cli.Args) {
 		return
 	}
 
-	if possibleUser == "" {
-		return
-	}
-
 	passwordGenerated, err := createEntry(entry, possibleUser)
 
 	if err != nil {
